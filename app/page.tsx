@@ -1,5 +1,9 @@
+import { TextField } from "@mui/material";
 import HotelComponent from "./components/HotelComponent";
 import Hotel from "./components/types";
+import Slider from "@mui/material/Slider";
+import Image from "next/image";
+import footerImage from "./images/photo.png";
 
 async function getHotels(): Promise<Hotel[]> {
   const token = "QcKjgrWuKr0mYaavwwtpSvk7MyWhyWh3k0Secv"; // Replace 'your_bearer_token' with your actual bearer token
@@ -31,25 +35,57 @@ export default async function Home() {
   const hotels = await getHotels();
 
   return (
-    <div className="flex flex-col justify-center ">
-      <div className="text-center	 flex flex-col justify-center align-middle">
+    <div className="flex w-full h-full flex-col">
+      <div className="text-center flex flex-col justify-center align-middle">
         <p>Breadcrumbs</p>
         <h1>Ellada</h1>
         <p>paketa-prosfores</p>
       </div>
-      <div className="flex items-start self-stretch gap-[24px] px-[300px]">
-        <div className="w-[312px] h-full bg-red-500">
+      <div className="flex items-start self-stretch gap-[24px] px-[10%]">
+        <div className="w-[60%] h-full bg-[#f2fbfd]">
           <h1>Φίλτρα</h1>
-          <h1>Φίλτρα</h1>
+          <h1>Εύρος Τιμής</h1>
+          <div className="flex">
+            <div>
+              <label>Apo</label>
+              <TextField placeholder="$$"></TextField>
+            </div>
+            <label>Apo</label>
+            <TextField placeholder="$$"></TextField>
+          </div>
+          <div className="flex  rotate-180 gap-[3px] ">
+            {hotels.map((h) => (
+              <div
+                key={h.price}
+                style={{
+                  bottom: "0", // Align the bottom of the div
+                  height: `${h.price * 0.2}px`,
+                  width: "10px",
+                  backgroundColor: "#baedf9",
+                }}
+              ></div>
+            ))}
+          </div>
+          <Slider
+            defaultValue={50}
+            aria-label="Default"
+            valueLabelDisplay="auto"
+          />
         </div>
         <div>
-          <p>{hotels.length} διαθέσιμα πακέτα διακοπών</p>
-          <div className="flex flex-wrap pb-[24px] justify-between 	 w-[1320px] h-[2150px]">
+          <div className="flex justify-between pb-6">
+            <p>{hotels.length} διαθέσιμα πακέτα διακοπών</p>
+            <input placeholder="sort" />
+          </div>
+          <div className="flex flex-wrap justify-between  h-[2150px]">
             {hotels.map((h) => (
               <HotelComponent key={h.name} hotel={h} />
             ))}
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-center h-16">
+        <Image src={footerImage} alt="footer image" />
       </div>
     </div>
   );

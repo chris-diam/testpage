@@ -7,7 +7,7 @@ interface HotelProps {
 
 const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
   return (
-    <div className="w-[312px] h-[479px] bg-red-200 rounded-md	flex flex-col items-start">
+    <div className="w-[312px] h-[479px] bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
       <img
         src={hotel.photo}
         alt={hotel.name}

@@ -7,13 +7,26 @@ interface HotelProps {
 
 const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
   return (
-    <div className="w-[312px] h-[479px]">
-      <img src={hotel.photo} alt={hotel.name} />
+    <div className="w-[312px] h-[479px] bg-red-200 rounded-md	flex flex-col items-start">
+      <img
+        src={hotel.photo}
+        alt={hotel.name}
+        className="rounded-md w-full h-[60%]"
+      />
       <p>Name: {hotel.name}</p>
       <p>Rating: {hotel.rating}</p>
       <p>Meal Plan: {hotel.meal_plan}</p>
       <p>City: {hotel.city}</p>
-      <p>Price: {hotel.price}</p>
+      <div className="flex flex-row justify-between w-full px-6">
+        <div className=" w-24 flex flex-row">
+          <p className="flex gap-[6px]">
+            Από <p>{hotel.price}</p>
+          </p>
+        </div>
+        <button className="bg-[#009649]  h-12 w-20 justify-center align-baseline rounded-lg text-white text-[14px]">
+          Κρατηση
+        </button>
+      </div>
     </div>
   );
 };

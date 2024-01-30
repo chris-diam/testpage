@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Neucha&family=Roboto&display=swap");
+
+html,
+body,
+label {
+  font-family: "Neucha", cursive;
+
+  font-family: "Roboto", sans-serif;
+}

@@ -24,8 +24,7 @@ async function getHotels(): Promise<Hotel[]> {
 
     const data = await res.json();
     const hotels = data.data;
-    console.log("edw");
-    console.log(data.data);
+
     return hotels;
   } catch (error) {
     console.error("Error fetching data:", error);

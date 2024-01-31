@@ -75,19 +75,19 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
         </h1>
         <p className="pt-[8px] text-[#555563] ">Πακέτα - Προσφορές</p>
 
-        <div className="pt-[64px]  flex justify-center">
-          <div className="bg-[#f6fbfc] rounded-3xl  w-[245px]">
-            <Button className="bg-white w-[50%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+        <div className="pt-[64px]  flex justify-center gap-4 ">
+          <div className="bg-[#f6fbfc] rounded-3xl flex justify-between w-[245px]">
+            <Button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
               Εκδρομές
             </Button>
-            <Button className="bg-white w-[50%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+            <Button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
               Ξενοδοχεία
             </Button>
           </div>
         </div>
         <div className="flex justify-center pt-[8px] ">
           <div className=" w-[1096px] h-[64px] bg-white rounded-lg flex justify-between">
-            <FormControl>
+            <FormControl size="medium">
               <InputLabel></InputLabel>
               <Select value={sortType} onChange={handleChange}>
                 <MenuItem value="name">Ελλάδα</MenuItem>
@@ -138,8 +138,9 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
           </div>
         </div>
       </div>
-      <div className="flex items-start self-stretch gap-[24px] px-[10%]">
-        <div className="w-[60%] h-full bg-[#f2fbfd] rounded-xl mt-[66px]">
+      <div className="flex items-start flex-row gap-[24px] pt-[64px] px-[10%]">
+        <div className="w-[60%]  ">
+        <div className=" h-full bg-[#f2fbfd] rounded-xl mt-[80px]">
           <h1>ΦΙΛΤΡΑ</h1>
           <h1>Εύρος Τιμής</h1>
           <div className="flex gap-4 px-4">
@@ -191,16 +192,18 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
             </ul>
           </div>
         </div>
+        </div>
         <div>
-          <div className="flex justify-between pb-6 pt-[64px]">
+          <div className=" w-[85%]  ">
+          <div className="flex justify-between ">
             <p className="text-[#555563]">
-              {hotels.length} διαθέσιμα πακέτα διακοπών
+              <b>{hotels.length}</b> διαθέσιμα πακέτα διακοπών
             </p>
             <Box
               sx={{
                 minWidth: 100,
                 color: "#555563",
-                marginRight: "80px",
+                marginRight: '20px',
                 backgroundColor: "white",
               }}
             >
@@ -214,15 +217,17 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               </FormControl>
             </Box>
           </div>
-          <div className="pt-[24px]">
+          <div className="pt-[24px] justify-between">
             {sortType === "name" ? (
-              <Grid container rowSpacing={2}>
+              <div className="flex justify-center ">
+              <Grid container rowSpacing={2} >
                 {sortedHotelsByName.map((h: Hotel) => (
                   <Grid item key={h.name} xs={4}>
                     <HotelComponent hotel={h} />
                   </Grid>
                 ))}
               </Grid>
+              </div>
             ) : null}
 
             {sortType === "priceAsc" ? (
@@ -244,6 +249,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
                 ))}
               </Grid>
             ) : null}
+          </div>
           </div>
         </div>
       </div>

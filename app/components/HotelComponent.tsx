@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Hotel from "./types";
 
@@ -19,12 +20,12 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
       <p>City: {hotel.city}</p>
       <div className="flex flex-row justify-between w-full px-6">
         <div className=" w-24 flex flex-row">
-          <p className="flex gap-[6px]">
+          <div className="flex gap-[6px]">
             Από <p>{hotel.price}</p>
-          </p>
+          </div>
         </div>
         <button className="bg-[#009649]  h-12 w-20 justify-center align-baseline rounded-lg text-white text-[14px]">
-          Κρατηση
+          Κράτηση
         </button>
       </div>
     </div>

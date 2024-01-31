@@ -101,16 +101,20 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
         </div>
         <div className="flex justify-center pt-8 pb-[8px]">
           <div className=" w-[1096px] h-[64px] bg-white rounded-lg flex justify-between">
-            <FormControl size="medium" sx={{ minWidth: "150px", color: "red" }}>
-              <InputLabel></InputLabel>
-              <Select value={sortType} onChange={handleChange}>
+            <FormControl size="medium">
+              <InputLabel id="demo-simple-select-label">Προορισμός</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sortType}
+                label="Προορισμός"
+                onChange={handleChange}
+              >
                 <MenuItem value="name">Ελλάδα</MenuItem>
-                <MenuItem value={"name"}>Κύπρος</MenuItem>
-                <MenuItem value="name">Ιταλία</MenuItem>
+                <MenuItem value="name">Ηνωμένες Πολιτείες</MenuItem>
                 <MenuItem value="name">Γαλλία</MenuItem>
                 <MenuItem value="name">Γερμανία</MenuItem>
                 <MenuItem value="name">Ηνωμένο Βασίλειο</MenuItem>
-                <MenuItem value="name">Ιαπωνία</MenuItem>
               </Select>
             </FormControl>
 
@@ -156,7 +160,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
       </div>
       <div className=" gap-[24px] pt-[64px] flex px-[300px]">
         <div className="flex">
-          <div className=" h-[1600px] border-black bg-[#ffffffcc] flex flex-col px-4 rounded-xl mt-[80px]">
+          <div className=" h-[1600px]  bg-[#ffffffcc] flex flex-col px-4 rounded-xl mt-[80px]">
             <h1 className="pb-4 font-bold text-[25px] pt-4 text-[#555543]">
               ΦΙΛΤΡΑ
             </h1>
@@ -268,7 +272,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               </p>
               <Box
                 sx={{
-                  minWidth: 100,
+                  minWidth: 120,
                   color: "#555563",
                   backgroundColor: "white",
                   borderRadius: "8px",
@@ -286,7 +290,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
             </div>
             <div className="pt-[24px]">
               {sortType === "name" ? (
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-3 gap-10">
                   {sortedHotelsByName.map((h: Hotel) => (
                     <HotelComponent hotel={h} />
                   ))}
@@ -294,7 +298,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               ) : null}
 
               {sortType === "priceAsc" ? (
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-10">
                   {sortedHotelsByPrice.map((h: Hotel) => (
                     <HotelComponent hotel={h} />
                   ))}
@@ -302,7 +306,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               ) : null}
 
               {sortType === "priceDesc" ? (
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-10">
                   {sortedHotelsByDescendingPrice.map((h: Hotel) => (
                     <HotelComponent hotel={h} />
                   ))}

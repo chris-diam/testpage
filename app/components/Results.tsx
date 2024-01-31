@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { Link, TextField } from "@mui/material";
 import HotelComponent from "./HotelComponent";
 import Hotel from "./types";
 import Slider from "@mui/material/Slider";
@@ -12,6 +12,15 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 interface ResultsProps {
   hotels: Hotel[];
@@ -33,16 +42,104 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
   };
 
   return (
-    <div className="flex flex-col w-full h-full ">
-      <div className="text-center flex flex-col justify-center align-middle">
-        <p>Breadcrumbs</p>
-        <h1 className="text-[76px]  tracking-[3.8px] font-semibold text-[#555563] leading-[76px] not-italic">
+    <div className="flex flex-col w-full h-full justify-center">
+      <div className="text-center flex flex-col align-middle">
+        <Breadcrumbs
+          className="pt-[24px]"
+          aria-label="breadcrumb"
+          separator={
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              fontSize="small"
+              color="#009649"
+            />
+          }
+          sx={{
+            textAlign: "center",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <Link underline="hover" color="inherit" href="/">
+            Αρχική
+          </Link>
+          <Link underline="hover" color="#555563">
+            Ελλάδα
+          </Link>
+          <Link underline="hover" color="#555563" aria-current="page">
+            Πακέτα
+          </Link>
+        </Breadcrumbs>
+        <h1 className="text-[76px] pt-[64px] tracking-[3.8px] font-semibold text-[#555563] leading-[76px] not-italic">
           ΕΛΛΑΔΑ
         </h1>
-        <p>Πακέτα - Προσφορές</p>
+        <p className="pt-[8px] text-[#555563] ">Πακέτα - Προσφορές</p>
+
+        <div className="pt-[64px]  flex justify-center">
+          <div className="bg-[#f6fbfc] rounded-3xl  w-[245px]">
+            <Button className="bg-white w-[50%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+              Εκδρομές
+            </Button>
+            <Button className="bg-white w-[50%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+              Ξενοδοχεία
+            </Button>
+          </div>
+        </div>
+        <div className="flex justify-center pt-[8px] ">
+          <div className=" w-[1096px] h-[64px] bg-white rounded-lg flex justify-between">
+            <FormControl>
+              <InputLabel></InputLabel>
+              <Select value={sortType} onChange={handleChange}>
+                <MenuItem value="name">Ελλάδα</MenuItem>
+                <MenuItem value="priceAsc">Κύπρος</MenuItem>
+                <MenuItem value="priceDesc">Ιταλία</MenuItem>
+                <MenuItem value="usa">Γαλλία</MenuItem>
+                <MenuItem value="germany">Γερμανία</MenuItem>
+                <MenuItem value="france">Ηνωμένο Βασίλειο</MenuItem>
+                <MenuItem value="japan">Ιαπωνία</MenuItem>
+              </Select>
+            </FormControl>
+
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker"]}>
+                <DatePicker label="Check in" />
+              </DemoContainer>
+            </LocalizationProvider>
+
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker"]}>
+                <DatePicker label="Check out" />
+              </DemoContainer>
+            </LocalizationProvider>
+
+            <FormControl>
+              <InputLabel>Αριθμός Ατόμων</InputLabel>
+              <Select
+                value={sortType}
+                defaultValue="Aριθμός Ατόμων"
+                onChange={handleChange}
+              >
+                <MenuItem value="name">1</MenuItem>
+                <MenuItem value="priceAsc">2</MenuItem>
+                <MenuItem value="priceDesc">3</MenuItem>
+                <MenuItem value="usa">4</MenuItem>
+                <MenuItem value="germany">5</MenuItem>
+                <MenuItem value="france">6</MenuItem>
+                <MenuItem value="japan">7</MenuItem>
+                <MenuItem value="japan">8</MenuItem>
+              </Select>
+            </FormControl>
+            <div className="px-[8px] py-2">
+              <Button className=" h-12 rounded-xl normal-case shadow-lg gap-2 backdrop-blur-lg text-white	 bg-[#009649] hover:bg-[#009649]">
+                <FontAwesomeIcon icon={faSearch} color="white" />
+                <p>Αναζήτηση</p>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex items-start self-stretch gap-[24px] px-[10%]">
-        <div className="w-[60%] h-full bg-[#f2fbfd]">
+        <div className="w-[60%] h-full bg-[#f2fbfd] rounded-xl mt-[66px]">
           <h1>ΦΙΛΤΡΑ</h1>
           <h1>Εύρος Τιμής</h1>
           <div className="flex gap-4 px-4">
@@ -95,9 +192,18 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
           </div>
         </div>
         <div>
-          <div className="flex justify-between pb-6">
-            <p>{hotels.length} διαθέσιμα πακέτα διακοπών</p>
-            <Box sx={{ minWidth: 120, paddingRight: "80px" }}>
+          <div className="flex justify-between pb-6 pt-[64px]">
+            <p className="text-[#555563]">
+              {hotels.length} διαθέσιμα πακέτα διακοπών
+            </p>
+            <Box
+              sx={{
+                minWidth: 100,
+                color: "#555563",
+                marginRight: "80px",
+                backgroundColor: "white",
+              }}
+            >
               <FormControl fullWidth>
                 <InputLabel></InputLabel>
                 <Select value={sortType} label="" onChange={handleChange}>
@@ -108,36 +214,37 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               </FormControl>
             </Box>
           </div>
+          <div className="pt-[24px]">
+            {sortType === "name" ? (
+              <Grid container rowSpacing={2}>
+                {sortedHotelsByName.map((h: Hotel) => (
+                  <Grid item key={h.name} xs={4}>
+                    <HotelComponent hotel={h} />
+                  </Grid>
+                ))}
+              </Grid>
+            ) : null}
 
-          {sortType === "name" ? (
-            <Grid container rowSpacing={2}>
-              {sortedHotelsByName.map((h: Hotel) => (
-                <Grid item key={h.name} xs={4}>
-                  <HotelComponent hotel={h} />
-                </Grid>
-              ))}
-            </Grid>
-          ) : null}
+            {sortType === "priceAsc" ? (
+              <Grid container rowSpacing={2}>
+                {sortedHotelsByPrice.map((h: Hotel) => (
+                  <Grid item key={h.name} xs={4}>
+                    <HotelComponent hotel={h} />
+                  </Grid>
+                ))}
+              </Grid>
+            ) : null}
 
-          {sortType === "priceAsc" ? (
-            <Grid container rowSpacing={2}>
-              {sortedHotelsByPrice.map((h: Hotel) => (
-                <Grid item key={h.name} xs={4}>
-                  <HotelComponent hotel={h} />
-                </Grid>
-              ))}
-            </Grid>
-          ) : null}
-
-          {sortType === "priceDesc" ? (
-            <Grid container rowSpacing={2}>
-              {sortedHotelsByDescendingPrice.map((h: Hotel) => (
-                <Grid item key={h.name} xs={4}>
-                  <HotelComponent hotel={h} />
-                </Grid>
-              ))}
-            </Grid>
-          ) : null}
+            {sortType === "priceDesc" ? (
+              <Grid container rowSpacing={2}>
+                {sortedHotelsByDescendingPrice.map((h: Hotel) => (
+                  <Grid item key={h.name} xs={4}>
+                    <HotelComponent hotel={h} />
+                  </Grid>
+                ))}
+              </Grid>
+            ) : null}
+          </div>
         </div>
       </div>
       <div className="flex items-center justify-center pt-52 pb-24">

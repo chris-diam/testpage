@@ -22,14 +22,14 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
   });
 
   return (
-    <div className="w-[312px] h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
+    <div className="w-[312px]    duration-300  hover:scale-105	 h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
       <img
         src={hotel.photo}
         alt={hotel.name}
         className="rounded-md w-full h-[60%]"
       />
-      <div className="relative pt-4">
-        <p className="text-[#838393]  text-[10px] absolute inset-y-8 left-0 pl-7">
+      <div className="relative pt-2 pr-8">
+        <p className="text-[#838393]  text-[10px] absolute inset-y-6 left-0 pl-7">
           {mealPlan}{" "}
         </p>
         <p className="pt-8 pl-6 font-bold	text-[20px]">

@@ -41,5 +41,9 @@ export default async function Home() {
     .sort((a, b) => a.name.localeCompare(b.name));
   const sortedHotelsByPrice = hotels.slice().sort((a, b) => a.price - b.price);
 
-  return <Results hotels={hotels} />;
+  return (
+    <div className="bg">
+      <Results hotels={hotels} />;
+    </div>
+  );
 }

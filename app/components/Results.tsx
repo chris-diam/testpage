@@ -105,12 +105,12 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
 
         <div className="pt-[64px]  flex justify-center gap-4 ">
           <div className="bg-[#f6fbfc] rounded-3xl flex justify-between w-[245px]">
-            <Button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+            <button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
               Εκδρομές
-            </Button>
-            <Button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
+            </button>
+            <button className="bg-white h-10 w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
               Ξενοδοχεία
-            </Button>
+            </button>
           </div>
         </div>
         <div className="flex justify-center pt-8 pb-[8px] ">
@@ -137,10 +137,16 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
                 className="outline-none border-none bg-transparent px-4 py-2 text-gray-700"
                 placeholder="Αριθμός ατόμων"
               />
-              <Button className="w-full h-12 rounded-xl normal-case shadow-lg gap-2 backdrop-blur-lg text-white	 bg-[#009649] hover:bg-[#009649]">
-                <FontAwesomeIcon icon={faSearch} color="white" />
-                <p>Αναζήτηση</p>
-              </Button>
+
+              <div className="flex justify-center ">
+                <button className="h-12 w-48 gap-2 text-white rounded-lg  border-solid  bg-[#009649] hover:bg-[#009649]">
+                  Αναζήτηση{" "}
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    className="fa-light fa-paper-plane"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -169,7 +175,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
                 <TextField placeholder="€" sx={{ maxWidth: 120 }}></TextField>
               </div>
             </div>
-            <div className=" flex justify-center">
+            <div className=" flex justify-center pt-3">
               <div className="flex start rotate-180 gap-[3px] ">
                 {hotels.map((h: Hotel) => (
                   <div
@@ -368,7 +374,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
             </div>
           </div>
         </div>
-        <div className="w-full relative flex flex-col">
+        <div className="w-full relative flex flex-col pt-4">
           <div className="w-full relative">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-[#555563] pt-3 md:pt-0 md:pr-4">
@@ -424,7 +430,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
                       rating.includes(h.rating)
                   ).length === 0 && (
                     <div className="pl-12 break-keep	transform hover:scale-105">
-                      <p className="font-bold text-5xl w-[1880px]	pl-12 text-[#555563] pt-6">
+                      <p className="font-bold text-xl w-[1880px]	pl-18 text-[#555563] pt-16">
                         ΔΕΝ ΒΡΕΘΗΚΑΝ ΑΠΟΤΕΛΕΣΜΑΤΑ{" "}
                       </p>
                     </div>

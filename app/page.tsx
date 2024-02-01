@@ -8,13 +8,13 @@ import Grid from "@mui/material/Grid";
 import Results from "./components/Results";
 
 async function getHotels(): Promise<Hotel[]> {
-  const token = "QcKjgrWuKr0mYaavwwtpSvk7MyWhyWh3k0Secv"; // Replace 'your_bearer_token' with your actual bearer token
+  const token = "QcKjgrWuKr0mYaavwwtpSvk7MyWhyWh3k0Secv";
 
   try {
     const res = await fetch("https://aio.server9.nelios.com/", {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json", // Add other headers if needed
+        "Content-Type": "application/json",
       },
     });
 
@@ -24,8 +24,6 @@ async function getHotels(): Promise<Hotel[]> {
 
     const data = await res.json();
     const hotels = data.data;
-    console.log("edw");
-    console.log(data.data);
     return hotels;
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -527,7 +527,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
           </button>
         </div>
         <div
-          className="m-auto mb-[60px] w-[360px] rounded-lg h-[440px] w-[1180px] flex items-center justify-center"
+          className="m-auto mb-[60px] w-[360px]  md:w-[1320px] rounded-lg h-[440px] w-[1180px] flex items-center justify-center"
           style={{
             backgroundImage: `url(${footerImage.src})`,
             backgroundRepeat: "no-repeat",

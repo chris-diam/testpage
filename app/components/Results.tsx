@@ -20,6 +20,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 interface ResultsProps {
   hotels: Hotel[];
@@ -98,13 +99,40 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
             Πακέτα
           </Link>
         </Breadcrumbs>
-        <h1 className="text-[76px] pt-[64px] tracking-[3.8px] font-semibold text-[#555563] leading-[76px] not-italic">
+        <h1 className="visible md:hidden text-[20px] pt-[34px] tracking-[3.8px] font-semibold text-[#555563] leading-[76px] not-italic">
+          ΠΕΛΛΟΠΟΝΝΗΣΟΣ
+        </h1>
+        <h1 className="hidden md:block text-[76px] pt-[64px] tracking-[3.8px] font-semibold text-[#555563] leading-[76px] not-italic">
           ΕΛΛΑΔΑ
         </h1>
+
         <p className="pt-[8px] text-[#555563] ">Πακέτα - Προσφορές</p>
 
-        <div className="pt-[64px]  flex justify-center gap-4 ">
-          <div className="bg-[#f6fbfc] rounded-3xl flex justify-between w-[245px]">
+        {/* <button className="bg-white flex justify-center mt-6">
+          <div className="flex flex-row">
+            <div className="flex flex-col flex-start">
+              <p>ΠΕΛΛΟΠΟΝΗΣΟΣ</p>
+              <p>03/08/2003-08/08/2023 · 2 ενήλικες</p>
+            </div>
+            <FontAwesomeIcon icon={faEdit} />
+          </div>
+        </button> */}
+
+        <div className="flex justify-center  md:hidden w-full pt-4 ">
+          <button className="flex justify-between w-[220px] bg-white rounded-3xl  border-solid border text-[#555563]">
+            <div className="flex flex-col h-10 pt-1 pl-1">
+              <b className="text-[10px] ">ΠΕΛΛΟΠΟΝΝΗΣΟΣ </b>
+              <p className="text-[10px]">03/08/2023 - 08/08/2023</p>
+            </div>
+            <FontAwesomeIcon
+              icon={faEdit}
+              className="pt-3 pr-4 text-[#009649]"
+            />
+          </button>
+        </div>
+
+        <div className="pt-[64px]   justify-center gap-4 hidden md:flex ">
+          <div className="bg-[#f6fbfc] rounded-3xl flex justify-between w-[245px]  ">
             <button className="bg-white w-[48%] rounded-3xl normal-case shadow-lg backdrop-blur-lg text-[#555563]	active:text-[#009649] focus:text-[#009649]">
               Εκδρομές
             </button>
@@ -114,7 +142,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
           </div>
         </div>
         <div className="flex justify-center pt-8 pb-[8px] ">
-          <div className=" w-[1096px] h-[64px] bg-white rounded-lg ">
+          <div className=" w-[1096px] h-[64px] bg-white rounded-lg invisible md:visible">
             <div className="flex grid-cols-5 justify-evenly pt-2 px-3 gap-1">
               <input
                 type="text"
@@ -139,7 +167,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
               />
 
               <div className="flex justify-center ">
-                <button className="h-12 w-48 gap-2 text-white rounded-lg  border-solid  bg-[#009649] hover:bg-[#009649]">
+                <button className="h-12 w-48 gap-2  text-white rounded-lg  border-solid  bg-[#009649] hover:bg-[#009649]">
                   Αναζήτηση{" "}
                   <FontAwesomeIcon
                     icon={faSearch}
@@ -152,10 +180,10 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
         </div>
       </div>
       <div
-        className=" gap-[24px] pt-[64px] flex px-[300px]"
+        className="  gap-[24px] pt-[64px] flex px-9 md:px-[300px] "
         style={{ margin: "auto" }}
       >
-        <div className="flex">
+        <div className="flex hidden md:block">
           <div className=" h-[1600px]  bg-[#ffffffcc] flex flex-col px-4 rounded-xl mt-[80px]">
             <h1 className="pb-4 font-bold text-[25px] pt-4 text-[#555543]">
               ΦΙΛΤΡΑ
@@ -374,7 +402,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
             </div>
           </div>
         </div>
-        <div className="w-full relative flex flex-col pt-4">
+        <div className="w-full relative flex flex-col pt-4 absolute inline-y-0 left mr-[00px]">
           <div className="w-full relative">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-[#555563] pt-3 md:pt-0 md:pr-4">
@@ -499,7 +527,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
           </button>
         </div>
         <div
-          className="m-auto mb-[60px] rounded-lg h-[440px] w-[1180px] flex items-center justify-center"
+          className="m-auto mb-[60px] w-[360px] rounded-lg h-[440px] w-[1180px] flex items-center justify-center"
           style={{
             backgroundImage: `url(${footerImage.src})`,
             backgroundRepeat: "no-repeat",

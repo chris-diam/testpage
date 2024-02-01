@@ -7,5 +7,10 @@ body {
   /* font-family: "Roboto Flex", sans-serif; */
   background-image: url("./images/neliosbg.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  margin: 0;
+  width: auto;
+  height: max-content;
+  position: static;
+  width: 100%;
+  height: 100%;
 }

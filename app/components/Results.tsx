@@ -50,6 +50,25 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
   }
 
   const [value, setValue] = React.useState<number[]>([0, 500]);
+  const [range, setRange] = useState<number>(500);
+  const [rating, setRating] = useState<number[]>([0, 1, 2, 3, 4, 5]);
+
+  const [mealPlan, setMealPlan] = useState<string[]>([
+    "All Inclusive",
+    "Half Board",
+    "Bed Breakfast",
+    "Room Only",
+  ]);
+
+  const handleMealPlanChange = (plan: any) => {
+    setMealPlan((prevMeal) =>
+      prevMeal.includes(plan)
+        ? prevMeal.filter((m) => m !== plan)
+        : [...prevMeal, plan]
+    );
+  };
+
+  const [checked, setChecked] = React.useState(true);
 
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
@@ -101,7 +120,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
         </div>
         <div className="flex justify-center pt-8 pb-[8px]">
           <div className=" w-[1096px] h-[64px] bg-white rounded-lg flex justify-between">
-            <FormControl size="medium">
+            {/* <FormControl size="medium">
               <InputLabel id="demo-simple-select-label">Προορισμός</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -116,17 +135,23 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
                 <MenuItem value="name">Γερμανία</MenuItem>
                 <MenuItem value="name">Ηνωμένο Βασίλειο</MenuItem>
               </Select>
-            </FormControl>
+            </FormControl> */}
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker label="Check in" />
+              <DatePicker
+                label="Check in"
+                sx={{
+                  color: "red",
+                  "&.MuiInputBase-input-root": { border: "none", color: "red" },
+                }}
+              />
             </LocalizationProvider>
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker label="Check out" />
             </LocalizationProvider>
 
-            <FormControl sx={{ minWidth: "160px", border: "none" }}>
+            {/* <FormControl sx={{ minWidth: "160px", border: "none" }}>
               <InputLabel>Αριθμός Ατόμων</InputLabel>
               <Select
                 value={""}
@@ -148,7 +173,7 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
                 <MenuItem value="japan">7</MenuItem>
                 <MenuItem value="japan">8</MenuItem>
               </Select>
-            </FormControl>
+            </FormControl> */}
             <div className="px-[8px] py-2">
               <Button className=" h-12 rounded-xl normal-case shadow-lg gap-2 backdrop-blur-lg text-white	 bg-[#009649] hover:bg-[#009649]">
                 <FontAwesomeIcon icon={faSearch} color="white" />
@@ -207,23 +232,32 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
+                defaultValue={range}
                 name="radio-buttons-group"
               >
                 <FormControlLabel
                   value="50"
                   control={<Radio />}
                   label="Έως 50 €"
+                  onChange={() => {
+                    setRange(50);
+                  }}
                 />
                 <FormControlLabel
                   value="150"
                   control={<Radio />}
                   label="50-150 €"
+                  onChange={() => {
+                    setRange(150);
+                  }}
                 />
                 <FormControlLabel
                   value="500"
                   control={<Radio />}
                   label="150-500 €"
+                  onChange={() => {
+                    setRange(500);
+                  }}
                 />
               </RadioGroup>
             </FormControl>
@@ -236,15 +270,50 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
                 <FormLabel className="pb-4 font-bold">ΠΡΩΙΝΟ</FormLabel>
 
                 <FormControlLabel
-                  control={<Checkbox />}
+                  control={<Checkbox defaultChecked={true} />}
                   label="All Inclusive"
+                  onChange={() => handleMealPlanChange("All Inclusive")}
                 />
-                <FormControlLabel control={<Checkbox />} label="Half Board" />
                 <FormControlLabel
-                  control={<Checkbox />}
-                  label="Bed Breakfast"
+                  control={<Checkbox defaultChecked={true} />}
+                  label="Half Board"
+                  onChange={() => {
+                    if (mealPlan.includes("Half Board"))
+                      setMealPlan((prevMeal) =>
+                        prevMeal.filter((m) => m !== "Half Board")
+                      );
+                    else {
+                      setMealPlan((prevMeal) => [...prevMeal, "Half Board"]);
+                    }
+                  }}
                 />
-                <FormControlLabel control={<Checkbox />} label="Room Only" />
+
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="Bed Breakfast"
+                  onChange={() => {
+                    if (mealPlan.includes("Bed Breakfast"))
+                      setMealPlan((prevMeal) =>
+                        prevMeal.filter((m) => m !== "Bed Breakfast")
+                      );
+                    else {
+                      setMealPlan((prevMeal) => [...prevMeal, "Bed Breakfast"]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="Room Only"
+                  onChange={() => {
+                    if (mealPlan.includes("Room Only"))
+                      setMealPlan((prevMeal) =>
+                        prevMeal.filter((m) => m !== "Room Only")
+                      );
+                    else {
+                      setMealPlan((prevMeal) => [...prevMeal, "Room Only"]);
+                    }
+                  }}
+                />
               </FormControl>
             </div>
             <div className="flex items-center justify  pt-4 center center">
@@ -254,64 +323,175 @@ export default function Results({ hotels }: { hotels: Hotel[] }) {
               <FormControl>
                 <FormLabel className="pb-4 font-bold">ΑΣΤΕΡΙΑ</FormLabel>
 
-                <FormControlLabel control={<Checkbox />} label="0" />
-                <FormControlLabel control={<Checkbox />} label="1" />
-                <FormControlLabel control={<Checkbox />} label="2" />
-                <FormControlLabel control={<Checkbox />} label="3" />
-                <FormControlLabel control={<Checkbox />} label="4" />
-                <FormControlLabel control={<Checkbox />} label="5" />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="0"
+                  onChange={() => {
+                    if (rating.includes(0))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 0)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 0]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="1"
+                  onChange={() => {
+                    if (rating.includes(1))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 1)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 1]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="2"
+                  onChange={() => {
+                    if (rating.includes(2))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 2)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 2]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="3"
+                  onChange={() => {
+                    if (rating.includes(3))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 3)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 3]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="4"
+                  onChange={() => {
+                    if (rating.includes(4))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 4)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 4]);
+                    }
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked={true} />}
+                  label="5"
+                  onChange={() => {
+                    if (rating.includes(5))
+                      setRating((prevRating) =>
+                        prevRating.filter((r) => r !== 5)
+                      );
+                    else {
+                      setRating((prevRating) => [...prevRating, 5]);
+                    }
+                  }}
+                />
               </FormControl>
             </div>
           </div>
         </div>
-        <div className="w-fit ">
-          <div className=" w-fit">
-            <div className="flex justify-between ">
-              <p className="text-[#555563] pt-3">
+        <div className="w-full relative flex flex-col">
+          <div className="w-full relative">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-[#555563] pt-3 md:pt-0 md:pr-4">
                 <b>{hotels.length}</b> διαθέσιμα πακέτα διακοπών
               </p>
-              <Box
-                sx={{
-                  minWidth: 120,
-                  color: "#555563",
-                  backgroundColor: "white",
-                  borderRadius: "8px",
-                }}
-              >
-                <FormControl fullWidth>
-                  <InputLabel></InputLabel>
-                  <Select value={sortType} label="" onChange={handleChange}>
-                    <MenuItem value={"name"}>Αύξουσα αλφαβητική σειρά</MenuItem>
-                    <MenuItem value={"priceAsc"}>Αύξουσα τιμή</MenuItem>
-                    <MenuItem value={"priceDesc"}>Φθίνουσα τιμή</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              <div className="md:absolute top-0 right-0">
+                <Box
+                  sx={{
+                    minWidth: 120,
+                    color: "#555563",
+                    backgroundColor: "white",
+                    borderRadius: "12px",
+                    border: "none",
+                  }}
+                >
+                  <FormControl fullWidth sx={{ border: "none" }}>
+                    <InputLabel></InputLabel>
+                    <Select
+                      value={sortType}
+                      label="Δημοφιλή"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={"name"}>
+                        Αύξουσα αλφαβητική σειρά
+                      </MenuItem>
+                      <MenuItem value={"priceAsc"}>Αύξουσα τιμή</MenuItem>
+                      <MenuItem value={"priceDesc"}>Φθίνουσα τιμή</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
             </div>
-            <div className="pt-[24px]">
-              {sortType === "name" ? (
-                <div className="grid grid-cols-3 gap-10">
-                  {sortedHotelsByName.map((h: Hotel) => (
-                    <HotelComponent hotel={h} />
-                  ))}
-                </div>
-              ) : null}
 
-              {sortType === "priceAsc" ? (
-                <div className="grid grid-cols-3 gap-10">
-                  {sortedHotelsByPrice.map((h: Hotel) => (
-                    <HotelComponent hotel={h} />
-                  ))}
-                </div>
-              ) : null}
-
-              {sortType === "priceDesc" ? (
-                <div className="grid grid-cols-3 gap-10">
-                  {sortedHotelsByDescendingPrice.map((h: Hotel) => (
-                    <HotelComponent hotel={h} />
-                  ))}
-                </div>
-              ) : null}
+            <div className="pt-3 md:pt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-10">
+                {sortType === "name" &&
+                  sortedHotelsByName
+                    .filter(
+                      (h) =>
+                        h.price < range &&
+                        mealPlan.includes(h.meal_plan) &&
+                        rating.includes(h.rating)
+                    )
+                    .map((h: Hotel) => (
+                      <div key={h.name}>
+                        <HotelComponent hotel={h} />
+                      </div>
+                    ))}
+                {sortType === "name" &&
+                  sortedHotelsByName.filter(
+                    (h) =>
+                      h.price < range &&
+                      mealPlan.includes(h.meal_plan) &&
+                      rating.includes(h.rating)
+                  ).length === 0 && (
+                    <div>
+                      <p>Δεν βρέθηκαν αποτελέσματα</p>
+                    </div>
+                  )}
+                {sortType === "priceAsc" &&
+                  sortedHotelsByPrice
+                    .filter(
+                      (h) =>
+                        h.price < range &&
+                        mealPlan.includes(h.meal_plan) &&
+                        rating.includes(h.rating)
+                    )
+                    .map((h: Hotel) => (
+                      <div key={h.name}>
+                        <HotelComponent hotel={h} />
+                      </div>
+                    ))}
+                {sortType === "priceDesc" &&
+                  sortedHotelsByDescendingPrice
+                    .filter(
+                      (h) =>
+                        h.price < range &&
+                        mealPlan.includes(h.meal_plan) &&
+                        rating.includes(h.rating)
+                    )
+                    .map((h: Hotel) => (
+                      <div key={h.name}>
+                        <HotelComponent hotel={h} />
+                      </div>
+                    ))}
+              </div>
             </div>
           </div>
         </div>

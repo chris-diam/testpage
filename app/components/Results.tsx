@@ -384,7 +384,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
                   </div>
 
                   <div className="pt-3 md:pt-10 pb-12">
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 lg:gap-40 xl:grid-cols-3 sm:grid-cols-2 md:gap-24 laptop:gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 lg:gap-40 xl:grid-cols-3 sm:grid-cols-2 laptop:gap-10">
                       {sortType === "name" &&
                         sortedHotelsByName
                           .filter(

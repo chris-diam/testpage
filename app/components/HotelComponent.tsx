@@ -22,7 +22,7 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
   });
 
   return (
-    <div className="w-[312px]    duration-300  hover:scale-105	 h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
+    <div className="laptop:w-[312px]  sm:w-[200px]  duration-300  hover:scale-105	 h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
       <img
         src={hotel.photo}
         alt={hotel.name}
@@ -32,20 +32,22 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
         <p className="text-[#838393]  text-[10px] absolute inset-y-6 left-0 pl-7">
           {mealPlan}{" "}
         </p>
-        <p className="pt-8 pl-6 font-bold	text-[20px]">
+        <p className="pt-8 pl-6 font-bold	laptop:text-[20px] sm:text-[14px]">
           ΚΑΛΟΚΑΙΡΙ ΣΤΟ {hotel.name} {hotel.rating}* ΣΤΟ {hotel.city}
         </p>
       </div>
       <div className="flex flex-row justify-between w-full px-6">
         <div className=" w-full h-full flex flex-row  pt-12 justify-between text-center align-middle">
           <div className="flex gap-[6px] ">
-            <p className="text-[12px] absolute bottom-6 left-4">AΠΟ</p>{" "}
-            <p className="text-[22px] absolute bottom-5 left-12">
+            <p className="laptop:text-[12px] absolute bottom-6 left-4 sm:text-[8px]">
+              AΠΟ
+            </p>{" "}
+            <p className="sm:text-[14px] laptop:text-[22px]   absolute bottom-5 sm:left-10 md:left-12">
               {hotel.price}€
             </p>
           </div>
           <div className="h-full">
-            <button className="bg-[#009649] absolute  bottom-4 right-5 h-12 w-24 justify-center  rounded-lg text-white text-[14px]">
+            <button className="bg-[#009649] absolute  bottom-4 right-5 h-12  sm:w-1/3 justify-center  rounded-lg text-white text-[14px]">
               Κράτηση
             </button>
           </div>

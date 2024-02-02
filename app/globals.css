@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Neucha&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap");
+html,
 body {
-  font-family: "Roboto Flex", sans-serif;
   margin: 0;
   height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Roboto Flex", sans-serif;
 }
 
 .bg {
   position: relative;
+  left: 0;
   background: url("./images/back.png") no-repeat no-repeat;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -18,5 +25,6 @@ body {
   @media (max-width: 768px) {
     background: none;
     background-color: #f5f5f5;
+    overflow-x: hidden;
   }
 }

@@ -17,6 +17,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 interface HotelProps {
   hotels: Hotel[];
   onClose: () => void;
+  setRange: () => void;
+  range: number;
 }
 
 const Filters: React.FC<HotelProps> = ({ hotels, onClose }) => {
@@ -25,7 +27,6 @@ const Filters: React.FC<HotelProps> = ({ hotels, onClose }) => {
   }
 
   const [value, setValue] = React.useState<number[]>([0, 500]);
-  const [range, setRange] = useState<number>(500);
   const [rating, setRating] = useState<number[]>([0, 1, 2, 3, 4, 5]);
 
   const [mealPlan, setMealPlan] = useState<string[]>([
@@ -92,32 +93,24 @@ const Filters: React.FC<HotelProps> = ({ hotels, onClose }) => {
           <FormControl>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={range}
               name="radio-buttons-group"
             >
               <FormControlLabel
                 value="50"
                 control={<Radio />}
                 label="Έως 50 €"
-                onChange={() => {
-                  setRange(50);
-                }}
               />
               <FormControlLabel
                 value="150"
                 control={<Radio />}
                 label="50-150 €"
-                onChange={() => {
-                  setRange(150);
-                }}
+                onChange={() => {}}
               />
               <FormControlLabel
                 value="500"
                 control={<Radio />}
                 label="150-500 €"
-                onChange={() => {
-                  setRange(500);
-                }}
+                onChange={() => {}}
               />
             </RadioGroup>
           </FormControl>
@@ -262,7 +255,7 @@ const Filters: React.FC<HotelProps> = ({ hotels, onClose }) => {
               />
             </FormControl>
           </div>
-          <div className="pl-10 pt-4">
+          <div className="pl-10 pt-4 sm:hidden">
             <button
               onClick={onClose}
               className="h-12 w-48  text-white rounded-lg  border-solid  bg-[#009649] hover:bg-[#009649]"

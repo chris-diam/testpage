@@ -486,7 +486,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
                   <h1 className="text-white text-3xl font-bold mb-2">
                     ΔΕΝ ΒΡΗΚΑΤΕ ΑΥΤΟ ΠΟΥ ΨΑΧΝΕΤΕ;
                   </h1>
-                  <div className="flex justify-center lg:hidden">
+                  <div className="flex justify-center">
                     <button className="h-14 w-56 gap-2 text-white rounded-lg  border-solid border-2 border-white">
                       Επικοινωνήστε μαζί μας{" "}
                       <FontAwesomeIcon

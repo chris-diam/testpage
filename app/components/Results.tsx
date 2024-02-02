@@ -85,7 +85,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
         <>
           <div className="flex flex-col w-full h-full justify-center">
             <TopSection />
-            <div className="flex md:hidden justify-center pt-20 gap-5">
+            <div className="flex md:hidden justify-center pt-24 gap-5">
               <button
                 onClick={() => setOpen(true)}
                 className="h-14 w-56 text-[#009649] rounded-lg  border-solid border-2 border-[#009649]"
@@ -101,7 +101,7 @@ export default function Results<ResultsProps>({ hotels }: { hotels: Hotel[] }) {
               {/* <Filters hotels={hotels} /> */}
               <div className="">
                 <div className="flex hidden md:block">
-                  <div className=" h-[1600px]  bg-[#ffffffcc] flex flex-col px-4 rounded-xl mt-[80px]">
+                  <div className=" h-[1600px]  bg-[#ffffffcc] flex flex-col px-4 rounded-xl mt-[110px]">
                     <h1 className="pb-4 font-bold text-[25px] pt-4 text-[#555543]">
                       ΦΙΛΤΡΑ
                     </h1>

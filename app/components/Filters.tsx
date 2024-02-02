@@ -17,8 +17,6 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 interface HotelProps {
   hotels: Hotel[];
   onClose: () => void;
-  setRange: () => void;
-  range: number;
 }
 
 const Filters: React.FC<HotelProps> = ({ hotels, onClose }) => {

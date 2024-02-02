@@ -22,7 +22,7 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
   });
 
   return (
-    <div className="laptop:w-[312px]  sm:w-[200px]  duration-300  hover:scale-105	 h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
+    <div className="laptop:w-[312px] xsm:mt-8 sm:w-[200px] duration-300  hover:scale-105	 h-[479px] text-[#555563] uppercase font-bold bg-white shadow-lg backdrop-blur-lg	 rounded-md	flex flex-col items-start">
       <img
         src={hotel.photo}
         alt={hotel.name}
@@ -39,10 +39,10 @@ const HotelComponent: React.FC<HotelProps> = ({ hotel }) => {
       <div className="flex flex-row justify-between w-full px-6">
         <div className=" w-full h-full flex flex-row  pt-12 justify-between text-center align-middle">
           <div className="flex gap-[6px] ">
-            <p className="laptop:text-[12px] absolute bottom-6 left-4 sm:text-[8px]">
+            <p className="laptop:text-[12px]    absolute bottom-6 left-4 xsm:text-[10px]">
               AΠΟ
             </p>{" "}
-            <p className="sm:text-[14px] laptop:text-[22px]   absolute bottom-5 sm:left-10 md:left-12">
+            <p className="sm:text-[14px] laptop:text-[22px]  xsm:pl-8 xsm:pb-1 absolute xsm:bottom-5 laptop:bottom-4 sm:left-10 md:left-4 ">
               {hotel.price}€
             </p>
           </div>
